@@ -28,6 +28,7 @@
     </scm>
     <properties>
         <java.version>17</java.version>
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
     </properties>
     <dependencies>
         <dependency>
@@ -69,6 +70,77 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>org.liquibase</groupId>-->
+<!--                <artifactId>liquibase-maven-plugin</artifactId>-->
+<!--                <version>4.27.0</version>-->
+<!--                <configuration>-->
+<!--                    <changeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</changeLogFile>-->
+<!--                    <diffChangeLogFile>src/main/resources/db/changelog/${maven.build.timestamp}_changelog.yaml</diffChangeLogFile>-->
+<!--                    <driver>org.postgresql.Driver</driver>-->
+<!--                    <url>jdbc:postgresql://localhost:5432/liqubase</url>-->
+<!--                    <defaultSchemaName />-->
+<!--                    <username>postgres</username>-->
+<!--                    <password>postgres</password>-->
+<!--&lt;!&ndash;                    <referenceUrl>hibernate:spring:dev.cat.liquibasedemo?dialect=org.hibernate.dialect.MySQLDialect&ndash;&gt;-->
+<!--&lt;!&ndash;                        &amp;hibernate.physical_naming_strategy=org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy&ndash;&gt;-->
+<!--&lt;!&ndash;                        &amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy&ndash;&gt;-->
+<!--&lt;!&ndash;                    </referenceUrl>&ndash;&gt;-->
+<!--                    <referenceUrl>hibernate:spring:dev.cat.liquibasedemo?dialect=org.hibernate.dialect.PostgreSQLDialect-->
+<!--                        &amp;hibernate.physical_naming_strategy=org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy-->
+<!--                        &amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy-->
+<!--                    </referenceUrl>-->
+
+<!--                    <verbose>true</verbose>-->
+<!--                </configuration>-->
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>org.liquibase.ext</groupId>-->
+<!--                        <artifactId>liquibase-hibernate6</artifactId>-->
+<!--                        <version>4.27.0</version>-->
+<!--                    </dependency>-->
+<!--                    <dependency>-->
+<!--                        <groupId>org.springframework.boot</groupId>-->
+<!--                        <artifactId>spring-boot-starter-data-jpa</artifactId>-->
+<!--                        <version>3.2.4</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+<!--            </plugin>-->
+
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>4.27.0</version>
+                <configuration>
+                    <changeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</changeLogFile>
+                    <diffChangeLogFile>src/main/resources/db/changelog/diff/changelog-${maven.build.timestamp}.yaml</diffChangeLogFile>
+                    <driver>org.postgresql.Driver</driver>
+                    <url>jdbc:postgresql://localhost:5432/liqubase</url>
+                    <username>postgres</username>
+                    <password>postgres</password>
+                    <referenceUrl>
+                        hibernate:spring:com.learn.liqubase.entity?dialect=org.hibernate.dialect.PostgreSQLDialect
+                        &amp;hibernate.physical_naming_strategy=org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+                        &amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+                    </referenceUrl>
+                    <verbose>true</verbose>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.liquibase.ext</groupId>
+                        <artifactId>liquibase-hibernate6</artifactId>
+                        <version>4.27.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-data-jpa</artifactId>
+                        <version>3.2.4</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+
         </plugins>
     </build>
 

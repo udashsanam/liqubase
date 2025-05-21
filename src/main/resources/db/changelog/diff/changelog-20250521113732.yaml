@@ -1,0 +1,15 @@
+databaseChangeLog:
+- changeSet:
+    id: 1747827459580-1
+    author: sanamudash (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: not_null
+            type: varchar(255)
+            defaultValue: "test"
+        tableName: students
+

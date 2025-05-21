@@ -1,0 +1,19 @@
+databaseChangeLog:
+- changeSet:
+    id: 1747827316232-1
+    author: sanamudash (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: phone_numbers
+            type: varchar(255)
+        tableName: students
+- changeSet:
+    id: 1747827316232-2
+    author: sanamudash (generated)
+    changes:
+    - dropColumn:
+        columnName: phone_number
+        tableName: students
+
